@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  font-family: Arial, sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+#response-area {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.message-card {
+  background-color: #1e1e1e;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #333;
+  text-align: left;
+}
+
+.chat-box {
+  background-color: #1e1e1e;
+  border-radius: 18px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.chat-box input[type="text"] {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 70%;
+  font-size: 14px;
+  outline: none;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icons span {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.icon-form input[type="file"] {
+  display: none;
+}
+
+.cocktail-btn {
+  background-color: #FFD500;
+  color: black;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.cocktail-btn:hover {
+  background-color: #e5c200;
+}

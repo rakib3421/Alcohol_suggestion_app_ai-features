@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <div id="response-area">
+      {% if result %}
+        <div class="message-card">
+          {% if uploaded_image %}
+            <img src="{{ uploaded_image }}" alt="Uploaded Image" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+          {% endif %}
+          <p>{{ result.replace('\n', '<br>')|safe }}</p>
+        </div>
+      {% endif %}
+
+      {% if history %}
+        {% for message in history %}
+          <div class="message-card {{ message.role }}">
+            <strong>{{ message.role|capitalize }}:</strong><br>
+            <p>{{ message.message.replace('\n', '<br>')|safe }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div class="chat-box">
+      <input type="text" id="messageInput" placeholder="Message with AI..." />
+      <div class="icons">
+        <span title="Voice" onclick="startVoice()">🎤</span>
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="icon-form" title="Upload Image">
+          <label for="image-upload">
+            🖼️
+            <input id="image-upload" type="file" name="image" accept="image/*" onchange="this.form.submit()" />
+          </label>
+        </form>
+      </div>
+    </div>
+
+    <button class="cocktail-btn" onclick="sendMessage()">Make Cocktail</button>
+  </div>
+
+  <script>
+    function startVoice() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.start();
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById("messageInput").value = transcript;
+        sendMessage();
+      };
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("messageInput").value;
+      if (!input) return;
+
+      fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `message=${encodeURIComponent(input)}`
+      })
+      .then(res => res.json())
+      .then(data => {
+        showMessage("User", input);
+        showMessage("AI", data.response);
+        document.getElementById("messageInput").value = "";
+      });
+    }
+
+    function showMessage(role, text) {
+      const card = document.createElement("div");
+      card.className = `message-card ${role.toLowerCase()}`;
+      card.innerHTML = `<strong>${role}:</strong><br><p>${text.replace(/\n/g, "<br>")}</p>`;
+      document.getElementById("response-area").appendChild(card);
+    }
+  </script>
+</body>
+</html>

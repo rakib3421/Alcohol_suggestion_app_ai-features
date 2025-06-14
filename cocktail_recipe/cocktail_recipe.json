@@ -1,0 +1,129 @@
+{
+  "drinkName": "Tennessee Barrel Old Fashioned",
+  "alcoholType": "Whiskey",
+  "description": "A sophisticated twist on the classic Old Fashioned, using the rich, nuanced flavors of Jack Daniel's Single Barrel Select. This cocktail highlights the whiskey's unique characteristics with subtle sweetness and aromatic bitters.",
+  "image": "Deep amber color with a clear, polished appearance. Served over a large ice cube in a rocks glass, garnished with an orange zest.",
+  "flavorProfile": "Strong, Oaky, Slightly Sweet",
+  "drinkStrength": "Strong",
+  "difficulty": "Easy",
+  "glassType": "Rocks Glass",
+  "rating": {
+    "score": 4.6,
+    "totalRatings": 875
+  },
+  "tags": [
+    "Whiskey",
+    "Old Fashioned",
+    "Classic",
+    "Strong",
+    "Tennessee Whiskey"
+  ],
+  "ingredients": [
+    {
+      "name": "Jack Daniel's Single Barrel Select",
+      "amount": "60ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Simple Syrup",
+      "amount": "7.5ml",
+      "category": "Mixer"
+    },
+    {
+      "name": "Angostura Bitters",
+      "amount": "2 Dashes",
+      "category": "Mixer"
+    },
+    {
+      "name": "Orange Zest",
+      "amount": "1",
+      "category": "Garnish"
+    }
+  ],
+  "garnish": [
+    "Orange Zest"
+  ],
+  "instructions": {
+    "howToMakeIt": "Combine the whiskey, simple syrup, and bitters in a rocks glass. Add a large ice cube and stir gently until chilled. Express the oils from an orange zest over the drink and use as garnish.",
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "Combine Ingredients",
+        "instruction": "In a rocks glass, add the Jack Daniel's Single Barrel Select, simple syrup, and Angostura bitters.",
+        "tip": "Use a high-quality simple syrup for the best flavor."
+      },
+      {
+        "stepNumber": 2,
+        "title": "Add Ice and Stir",
+        "instruction": "Add a large ice cube to the glass. Stir gently for 15-20 seconds to chill the drink and slightly dilute the syrup.",
+        "tip": "A large ice cube will melt slower, keeping your drink chilled without diluting it too quickly."
+      },
+      {
+        "stepNumber": 3,
+        "title": "Garnish",
+        "instruction": "Express the oils from an orange zest over the drink by squeezing it gently. Rub the zest around the rim of the glass, then drop it into the drink.",
+        "tip": "Make sure the orange zest is fresh and fragrant for the best aroma."
+      }
+    ]
+  },
+  "variations": [
+    {
+      "name": "Smoked Old Fashioned",
+      "description": "Uses smoked simple syrup for a deeper smoky flavor.",
+      "keyIngredient": "Smoked Simple Syrup"
+    },
+    {
+      "name": "Maple Old Fashioned",
+      "description": "Replaces simple syrup with maple syrup for a warm and rich flavor.",
+      "keyIngredient": "Maple Syrup"
+    }
+  ],
+  "servingInfo": {
+    "bestTime": "Evening",
+    "occasion": "Formal",
+    "temperature": "Chilled",
+    "garnishPlacement": "On the rim or dropped into the drink"
+  },
+  "nutritionalInfo": {
+    "calories": 180,
+    "alcoholContent": "30%",
+    "sugarContent": "Medium"
+  },
+  "pairingRecommendations": [
+    {
+      "category": "Cheese",
+      "items": [
+        "Aged Cheddar",
+        "Gouda"
+      ],
+      "emoji": "🧀"
+    },
+    {
+      "category": "Meat",
+      "items": [
+        "Grilled Steak",
+        "Smoked Brisket"
+      ],
+      "emoji": "🥩"
+    },
+    {
+      "category": "Dessert",
+      "items": [
+        "Dark Chocolate",
+        "Pecan Pie"
+      ],
+      "emoji": "🍫"
+    }
+  ],
+  "professionalTips": [
+    "Experiment with different bitters to find your preferred flavor profile.",
+    "Use high-quality ice for optimal chilling and minimal dilution.",
+    "Pre-chill your rocks glass for an even colder drink."
+  ],
+  "history": {
+    "origin": "United States",
+    "creator": "Unknown",
+    "yearCreated": "19th Century",
+    "story": "The Old Fashioned is one of the oldest and most respected cocktails. Its origins can be traced back to the 19th century, where it was simply known as a 'whiskey cocktail'."
+  }
+}

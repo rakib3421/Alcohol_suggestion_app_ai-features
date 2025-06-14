@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alcohol Suggestion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="phone">
+    <h3>Alcohol Suggestion</h3>
+    <select id="mood">
+      <option value="happy">Happy</option>
+      <option value="sad">Sad</option>
+      <option value="relaxed">Relaxed</option>
+      <option value="excited">Excited</option>
+      <option value="tired">Tired</option>
+    </select>
+    <input id="cityInput" placeholder="Enter city (if location denied)" style="display:none; margin-top:10px;" />
+    <button onclick="getSuggestion()">Get Suggestion</button>
+    <div id="result" class="notification" style="display:none;"></div>
+  </div>
+
+  <script>
+    async function getSuggestion() {
+      const mood = document.getElementById("mood").value;
+      const resultBox = document.getElementById("result");
+      const cityInput = document.getElementById("cityInput");
+      resultBox.style.display = "block";
+      resultBox.innerText = "Getting your location...";
+
+      // Try to get location
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        cityInput.style.display = "none";
+        try {
+          const response = await fetch("/get_suggestion", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ lat, lon, mood })
+          });
+          const data = await response.json();
+          if (data.suggestion) {
+            resultBox.innerText = data.suggestion;
+          } else {
+            resultBox.innerText = "Something went wrong. Try again!";
+          }
+        } catch (err) {
+          resultBox.innerText = "Error contacting server.";
+        }
+      }, async (err) => {
+        // Location denied, show city input
+        cityInput.style.display = "block";
+        resultBox.innerText = "Location access denied. Please enter your city and click again.";
+        // Wait for user to enter city and click again
+        cityInput.onchange = async function() {
+          if (cityInput.value.trim()) {
+            resultBox.innerText = "Getting weather for " + cityInput.value + "...";
+            // Fetch lat/lon from city name
+            const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cityInput.value.trim())}`);
+            const geoData = await geoRes.json();
+            if (geoData.length > 0) {
+              const lat = geoData[0].lat;
+              const lon = geoData[0].lon;
+              try {
+                const response = await fetch("/get_suggestion", {
+                  method: "POST",
+                  headers: {"Content-Type": "application/json"},
+                  body: JSON.stringify({ lat, lon, mood })
+                });
+                const data = await response.json();
+                if (data.suggestion) {
+                  resultBox.innerText = data.suggestion;
+                } else {
+                  resultBox.innerText = "Something went wrong. Try again!";
+                }
+              } catch (err) {
+                resultBox.innerText = "Error contacting server.";
+              }
+            } else {
+              resultBox.innerText = "City not found. Please check spelling.";
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
